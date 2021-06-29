@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Login from './components/Login/Login';
+import Chat from './components/Chat/Chat';
+import { FirebaseProvider } from './context/FirebaseContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <FirebaseProvider>
+        <Switch>
+          <Route path='/' exact render={() => <Login />} />
+          <Route path='/chat' exact render={() => <Chat />} />
+          <Route render={() => <h1>NO CONTENT HERE</h1>} />
+        </Switch>
+      </FirebaseProvider>
+    </BrowserRouter>
   );
 }
 

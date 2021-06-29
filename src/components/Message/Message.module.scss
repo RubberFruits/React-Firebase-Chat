@@ -1,0 +1,43 @@
+.message_container{
+   border:1px solid white;
+   width:100%;
+   max-width:100%;
+   display:flex;
+}
+
+.message_body{
+   height:max-content;
+   width:max-content;
+   max-width: 50%;
+   background-color: #d9caf5;
+   color:black;
+   margin-top: 10px;
+   border-radius: 20px;
+   margin-left:10px;
+}
+
+.not{
+   @extend .message_body;
+   background-color:aqua;
+   align-self:flex-start;
+}
+
+.message_author{
+   display: inline-block;
+   width:max-content;
+   font-weight: bold;
+   margin-left:20px;
+   margin-top:10px;
+   margin-right:10px;
+}
+
+.message_text{
+   display: inline-block;
+   width:max-content;
+   max-width: 95%;
+   word-wrap: break-word;
+   margin-left:20px;
+   margin-top:10px;
+   margin-bottom:10px;
+   font-size:18px;
+}
