@@ -6,6 +6,20 @@
    margin:0 auto;
 }
 
+.logOut_button{
+   position:absolute;
+   top:0;
+   right:0.5%;
+   width:100px;
+   height:50px;
+   border-radius: 13px;
+   background-color:lavender;
+   color:black;
+   text-transform: uppercase;
+   font-weight: bold;
+   font-size: 20px;
+}
+
 .chat_main_container{
    width:85%;
    height:100vh;
@@ -20,6 +34,7 @@
    background-color:darkslategray;
    height:92%;
    overflow-y:auto;
+   scroll-behavior: smooth;
 }
 
 .chat_input__container{
@@ -43,11 +58,11 @@
 
 .chat_send_icon{
    mask-image:url('../../assets/pictures/send.svg');
-   margin-left:20px;
+   mask-repeat: no-repeat;
+   margin-left:10px;
    width:40px;
    background-color:white;
    height:40px;
-   background-repeat: no-repeat;
    cursor: pointer;
    transition:0.2s all ease;
    &:hover{
@@ -55,17 +70,41 @@
    }
 }
 
+@media (max-width:1340px){
+   .logOut_button{
+      width:6%;
+      height:10%;
+      margin-right:0.5%;
+   }
+}
 
+@media (max-width:850px){
+   
+   .chat_main_container{
+      width:94%;
+      height: 100vh;
+      margin-left:3%;
+   }
+   .chat_main_container{
+      border:none;
+   }
 
-
-
-
-
-
-.logOut_button{
-   position:absolute;
-   top:0;
-   right:0;
-   width:100px;
-   height:50px;
+   .chat_input__container{
+      width:100%;
+   }
+   .chat_input{
+      width:90vw;
+   }
+   .logOut_button{
+      background-image:url('../../assets/pictures/logout.svg');
+      height:5%;
+      position:fixed;
+      width:10%;
+      top:2%;
+      font-size:0;
+      background-position: center;
+      background-size: 90%;
+      background-repeat: no-repeat;
+   }
+   
 }

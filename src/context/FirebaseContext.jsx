@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { auth } from '../API/firebase'
-import Loader from '../components/Loader/Loader'
+import Loader from '../components/common/Loader/Loader'
 
 const FireBaseContext = React.createContext()
 

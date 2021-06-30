@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
-import Loader from '../../components/Loader/Loader'
+import Loader from '../../components/common/Loader/Loader'
 import { auth, firestore } from '../../API/firebase'
 import firebase from 'firebase'
 import { useFirebase } from '../../context/FirebaseContext'
@@ -11,6 +11,7 @@ import Message from '../Message/Message'
 
 const Chat = () => {
    const history = useHistory()
+   const scrollWindow = useRef(null)
    const { user } = useFirebase()
    const [text, setText] = useState('')
    const [firestoreMessages, isFirestoreLoading] = useCollectionData(
@@ -30,7 +31,7 @@ const Chat = () => {
       firestore.collection('messages').add({
          id: user.uid,
          text,
-         createdAt:firebase.firestore.FieldValue.serverTimestamp()
+         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       })
       setText('')
    }
@@ -40,7 +41,16 @@ const Chat = () => {
          history.push('/')
          return
       }
+
    }, [user, history])
+
+   const scrollToBottom = () => {
+      scrollWindow.current?.scrollIntoView({ behavior: "smooth" });
+   }
+
+   useEffect(() => {
+      scrollToBottom();
+   }, [firestoreMessages])
 
    if (isFirestoreLoading) return <Loader />
 
@@ -52,18 +62,20 @@ const Chat = () => {
                {
                   firestoreMessages
                      .map((message, index) =>
-                        <Message 
-                           key={index} 
-                           id={user.uid}
+                        <Message
+                           key={index}
+                           id={user?.uid}
                            message={message}
-                         />
+                        />
                      )
                }
+               <div ref={scrollWindow}></div>
             </div>
             <div className={style.chat_input__container}>
                <input
                   className={style.chat_input}
                   value={text}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { handleSendText() } }}
                   onChange={(e) => setText(e.target.value)}
                />
                <div

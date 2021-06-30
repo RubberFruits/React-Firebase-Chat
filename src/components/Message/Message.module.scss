@@ -1,8 +1,9 @@
 .message_container{
-   border:1px solid white;
    width:100%;
    max-width:100%;
    display:flex;
+   flex-direction: column;
+   align-items:flex-start;
 }
 
 .message_body{
@@ -16,10 +17,12 @@
    margin-left:10px;
 }
 
-.not{
+.message_body_from_me{
    @extend .message_body;
    background-color:aqua;
-   align-self:flex-start;
+   align-self:flex-end;
+   margin-left:0;
+   margin-right:10px;
 }
 
 .message_author{
@@ -40,4 +43,13 @@
    margin-top:10px;
    margin-bottom:10px;
    font-size:18px;
+}
+
+@media (max-width: 850px){
+   .message_body{
+      max-width: 70%;
+   }
+   .message_text{
+      max-width: 85%;
+   }
 }
