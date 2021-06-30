@@ -79,10 +79,13 @@
 }
 
 @media (max-width:850px){
+   .wrapper{
+      height: 93.5vh;
+   }
    
    .chat_main_container{
       width:94%;
-      height: 100vh;
+      height: 92vh;
       margin-left:3%;
    }
    .chat_main_container{
